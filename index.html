@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOUND — Policy Runtime Dashboard</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0a0e1a;
+      --surface:#111827;
+      --border:#1f2937;
+      --accent:#3b82f6;
+      --green:#10b981;
+      --yellow:#f59e0b;
+      --red:#ef4444;
+      --text:#f1f5f9;
+      --muted:#64748b;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:monospace;
+      min-height:100vh;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 30px;
+      border-bottom:1px solid var(--border);
+      background:var(--surface);
+    }
+
+    .logo{
+      font-size:22px;
+      font-weight:bold;
+      color:var(--accent);
+      letter-spacing:3px;
+    }
+
+    .tagline{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      padding:20px;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:20px;
+    }
+
+    .full{
+      grid-column:1 / -1;
+    }
+
+    .card-title{
+      margin-bottom:20px;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .metric{
+      margin-bottom:18px;
+    }
+
+    .metric-top{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:6px;
+    }
+
+    .bar{
+      height:8px;
+      background:var(--border);
+      border-radius:4px;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      width:0%;
+      background:var(--accent);
+      transition:0.3s;
+    }
+
+    .rule{
+      border:1px solid var(--border);
+      padding:12px;
+      border-radius:8px;
+      margin-bottom:10px;
+    }
+
+    .rule.active{
+      border-color:var(--red);
+      background:rgba(239,68,68,0.08);
+    }
+
+    .rule-name{
+      font-weight:bold;
+      color:var(--accent);
+      margin-bottom:6px;
+    }
+
+    .rule-cond{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .tag{
+      display:inline-block;
+      margin-top:8px;
+      margin-right:6px;
+      padding:4px 8px;
+      border-radius:4px;
+      background:rgba(59,130,246,0.15);
+      color:var(--accent);
+      font-size:11px;
+    }
+
+    button{
+      border:none;
+      background:var(--accent);
+      color:white;
+      padding:10px 16px;
+      border-radius:6px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    button:hover{
+      opacity:0.9;
+    }
+
+    input, select{
+      background:var(--bg);
+      border:1px solid var(--border);
+      color:white;
+      padding:8px;
+      border-radius:6px;
+      margin-top:8px;
+      width:100%;
+    }
+
+    #log{
+      height:220px;
+      overflow-y:auto;
+      font-size:12px;
+    }
+
+    .log-item{
+      padding:6px 0;
+      border-bottom:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    canvas{
+      width:100% !important;
+      height:300px !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="logo">BOUND</div>
+    <div class="tagline">
+      Deterministic Policy-as-Code Runtime
+    </div>
+  </div>
+
+  <div id="api-status">
+    Connecting...
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- METRICS -->
+  <div class="card">
+
+    <div class="card-title">Live Metrics</div>
+
+    <div class="metric">
+      <div class="metric-top">
+        <span>cpu_temp</span>
+        <span id="cpu-value">0°C</span>
+      </div>
+
+      <div class="bar">
+        <div class="fill" id="cpu-bar"></div>
+      </div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-top">
+        <span>fan_speed</span>
+        <span id="fan-value">0%</span>
+      </div>
+
+      <div class="bar">
+        <div class="fill" id="fan-bar"></div>
+      </div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-top">
+        <span>traffic_load</span>
+        <span id="traffic-value">0%</span>
+      </div>
+
+      <div class="bar">
+        <div class="fill" id="traffic-bar"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RULES -->
+  <div class="card">
+
+    <div class="card-title">Policy Rules</div>
+
+    <div id="rules-list"></div>
+
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="card">
+
+    <div class="card-title">Controls</div>
+
+    <div>
+      <label>Metric</label><br>
+
+      <select id="metric-name">
+        <option value="cpu_temp">cpu_temp</option>
+        <option value="fan_speed">fan_speed</option>
+        <option value="traffic_load">traffic_load</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Value</label><br>
+      <input type="number" id="metric-value" value="95">
+    </div>
+
+    <button onclick="injectMetric()">
+      SET METRIC
+    </button>
+
+    <br><br>
+
+    <button onclick="runCycle()">
+      RUN CYCLE
+    </button>
+
+    <br><br>
+
+    <label>Simulation Cycles</label><br>
+    <input type="number" id="sim-cycles" value="5">
+
+    <br>
+
+    <label>Load</label><br>
+    <input type="number" id="sim-load" value="80">
+
+    <br>
+
+    <button onclick="runSimulation()">
+      RUN SIMULATION
+    </button>
+
+  </div>
+
+  <!-- EVENT LOG -->
+  <div class="card">
+
+    <div class="card-title">Event Log</div>
+
+    <div id="log"></div>
+
+  </div>
+
+  <!-- CHART -->
+  <div class="card full">
+
+    <div class="card-title">
+      Telemetry Chart
+    </div>
+
+    <canvas id="chart"></canvas>
+
+  </div>
+
+</div>
+
+<script>
+
+// =============================================
+// FIXED API URL
+// =============================================
+
+const API = "http://127.0.0.1:5000/api/runtime";
+
+// =============================================
+// CHART
+// =============================================
+
+const ctx = document.getElementById("chart");
+
+const chart = new Chart(ctx, {
+  type: "line",
+
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: "CPU Temp",
+        data: [],
+        borderColor: "#ef4444",
+        tension: 0.3
+      },
+      {
+        label: "Fan Speed",
+        data: [],
+        borderColor: "#3b82f6",
+        tension: 0.3
+      },
+      {
+        label: "Traffic Load",
+        data: [],
+        borderColor: "#f59e0b",
+        tension: 0.3
+      }
+    ]
+  },
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+
+// =============================================
+// LOGGING
+// =============================================
+
+function addLog(message){
+
+  const log = document.getElementById("log");
+
+  const item = document.createElement("div");
+
+  item.className = "log-item";
+
+  const time = new Date().toLocaleTimeString();
+
+  item.innerHTML = `[${time}] ${message}`;
+
+  log.prepend(item);
+}
+
+// =============================================
+// UPDATE METRICS
+// =============================================
+
+function updateMetrics(state){
+
+  if(!state) return;
+
+  const cpu = state.cpu_temp || 0;
+  const fan = state.fan_speed || 0;
+  const traffic = state.traffic_load || 0;
+
+  document.getElementById("cpu-value").textContent = `${cpu}°C`;
+  document.getElementById("fan-value").textContent = `${fan}%`;
+  document.getElementById("traffic-value").textContent = `${traffic}%`;
+
+  document.getElementById("cpu-bar").style.width = `${Math.min(cpu,100)}%`;
+  document.getElementById("fan-bar").style.width = `${Math.min(fan,100)}%`;
+  document.getElementById("traffic-bar").style.width = `${Math.min(traffic,100)}%`;
+}
+
+// =============================================
+// LOAD RULES
+// =============================================
+
+async function loadRules(){
+
+  try{
+
+    const response = await fetch(`${API}/rules`);
+    const data = await response.json();
+
+    const list = document.getElementById("rules-list");
+
+    list.innerHTML = "";
+
+    data.rules.forEach(rule => {
+
+      const div = document.createElement("div");
+
+      div.className = "rule";
+      div.id = `rule-${rule.name}`;
+
+      div.innerHTML = `
+        <div class="rule-name">${rule.name}</div>
+        <div class="rule-cond">
+          WHEN ${rule.condition}
+        </div>
+
+        ${
+          rule.actions.map(a =>
+            `<span class="tag">${a}</span>`
+          ).join("")
+        }
+      `;
+
+      list.appendChild(div);
+
+    });
+
+    document.getElementById("api-status").textContent =
+      "API Connected";
+
+    addLog("Rules loaded");
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    document.getElementById("api-status").textContent =
+      "API Offline";
+
+    addLog("Failed to load rules");
+
+  }
+}
+
+// =============================================
+// REFRESH STATE
+// =============================================
+
+async function refreshState(){
+
+  try{
+
+    const response = await fetch(`${API}/state`);
+    const data = await response.json();
+
+    updateMetrics(data.state);
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    addLog("Failed to fetch state");
+
+  }
+}
+
+// =============================================
+// REFRESH TELEMETRY
+// =============================================
+
+async function refreshTelemetry(){
+
+  try{
+
+    const response = await fetch(`${API}/telemetry`);
+    const data = await response.json();
+
+    const snapshots = data.snapshots || [];
+
+    chart.data.labels =
+      snapshots.map(s => s.cycle);
+
+    chart.data.datasets[0].data =
+      snapshots.map(s => s.state.cpu_temp);
+
+    chart.data.datasets[1].data =
+      snapshots.map(s => s.state.fan_speed);
+
+    chart.data.datasets[2].data =
+      snapshots.map(s => s.state.traffic_load);
+
+    chart.update();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    addLog("Failed telemetry update");
+
+  }
+}
+
+// =============================================
+// SET METRIC
+// =============================================
+
+async function injectMetric(){
+
+  const name =
+    document.getElementById("metric-name").value;
+
+  const value =
+    parseFloat(document.getElementById("metric-value").value);
+
+  try{
+
+    await fetch(`${API}/metric`, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        name,
+        value
+      })
+
+    });
+
+    addLog(`SET ${name} = ${value}`);
+
+    await refreshState();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    addLog("Failed metric injection");
+
+  }
+}
+
+// =============================================
+// RUN CYCLE
+// =============================================
+
+async function runCycle(){
+
+  try{
+
+    const response =
+      await fetch(`${API}/cycle`, {
+        method: "POST"
+      });
+
+    const data = await response.json();
+
+    updateMetrics(data.state);
+
+    addLog(
+      `Cycle ${data.cycle} completed`
+    );
+
+    document.querySelectorAll(".rule")
+      .forEach(r => r.classList.remove("active"));
+
+    if(data.active_rules.length > 0){
+
+      data.active_rules.forEach(rule => {
+
+        const el =
+          document.getElementById(`rule-${rule}`);
+
+        if(el){
+          el.classList.add("active");
+        }
+
+      });
+
+      addLog(
+        `Rules triggered: ${data.active_rules.join(", ")}`
+      );
+    }
+
+    await refreshTelemetry();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    addLog("Cycle failed");
+
+  }
+}
+
+// =============================================
+// RUN SIMULATION
+// =============================================
+
+async function runSimulation(){
+
+  const cycles =
+    parseInt(document.getElementById("sim-cycles").value);
+
+  const load =
+    parseFloat(document.getElementById("sim-load").value);
+
+  try{
+
+    const response = await fetch(`${API}/simulate`, {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        cycles,
+        load
+      })
+
+    });
+
+    const data = await response.json();
+
+    addLog(
+      `Simulation completed (${cycles} cycles)`
+    );
+
+    if(data.snapshots.length > 0){
+
+      const last =
+        data.snapshots[data.snapshots.length - 1];
+
+      updateMetrics(last.state);
+
+    }
+
+    await refreshTelemetry();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    addLog("Simulation failed");
+
+  }
+}
+
+// =============================================
+// INIT
+// =============================================
+
+async function init(){
+
+  await loadRules();
+  await refreshState();
+  await refreshTelemetry();
+
+  addLog("BOUND dashboard initialized");
+
+}
+
+init();
+
+// =============================================
+// REALTIME AUTO UPDATE
+// =============================================
+
+setInterval(() => {
+
+  refreshState();
+  refreshTelemetry();
+
+}, 1000);
+
+</script>
+
+</body>
+</html>

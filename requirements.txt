@@ -1,0 +1,16 @@
+# ======================================================
+# BOUND — Requirements
+# ======================================================
+
+# DSL Parser
+lark>=1.1.7
+
+# REST API
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Testing
+pytest>=8.0.0
+
+# Optional: colored terminal output
+colorama>=0.4.6

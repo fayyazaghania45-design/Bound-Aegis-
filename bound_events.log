@@ -1,0 +1,115 @@
+[2026-05-25T07:55:48.993312] [INFO] BOUND runtime starting
+[2026-05-25T08:10:14.537800] [INFO] BOUND runtime starting
+[2026-05-25T08:14:42.411435] [INFO] BOUND runtime starting
+[2026-05-25T08:18:50.740613] [INFO] BOUND runtime starting
+[2026-05-25T08:31:29.220678] [INFO] BOUND runtime starting
+[2026-05-25T08:31:29.229034] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:31:29.249739] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:31:29.252075] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.253154] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.258888] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:31:29.259546] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.260369] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.270410] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:31:29.271245] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.272438] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.278492] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:31:29.281740] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:31:29.282708] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:36:23.015129] [INFO] BOUND runtime starting
+[2026-05-25T08:36:23.024255] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:36:23.037332] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:36:23.037971] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:36:23.038780] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:36:23.054833] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:36:23.069156] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:36:23.069881] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:36:23.070864] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:36:23.082481] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.096155] [INFO] BOUND runtime starting
+[2026-05-25T08:41:13.108646] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.118379] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.119714] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:41:13.121054] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:41:13.145024] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.160283] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.170554] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:41:13.180936] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:41:13.182159] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:49:14.466638] [INFO] BOUND runtime starting
+[2026-05-25T08:49:14.476678] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:49:14.487286] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:49:14.488451] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:49:14.489252] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:49:14.504610] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:49:14.516698] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:49:14.531978] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:49:14.536164] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:49:14.537193] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:52:52.938991] [INFO] BOUND runtime starting
+[2026-05-25T08:55:29.061695] [INFO] BOUND runtime starting
+[2026-05-25T08:55:29.086846] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:55:29.120570] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:55:29.122367] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:55:29.123517] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T08:55:29.128932] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:55:29.135429] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:55:29.140615] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T08:55:29.141313] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T08:55:29.141942] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:02:35.605008] [INFO] BOUND runtime starting
+[2026-05-25T09:02:35.615698] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:02:35.629923] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:02:35.631460] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:02:35.633911] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:02:35.663851] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:02:35.664937] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:02:35.666372] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:08:56.754527] [INFO] BOUND runtime starting
+[2026-05-25T09:08:56.766541] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:08:56.784243] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:08:56.786882] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:08:56.788192] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:08:56.807755] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:08:56.821174] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:08:56.822494] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:13:22.821148] [INFO] BOUND runtime starting
+[2026-05-25T09:13:22.844441] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:13:22.868980] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:13:22.872606] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:13:22.874672] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:16:10.653735] [INFO] BOUND runtime starting
+[2026-05-25T09:16:10.667303] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:16:10.678382] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:16:10.679689] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:16:10.680868] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:24:01.206071] [INFO] BOUND runtime starting
+[2026-05-25T09:24:01.217473] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:24:01.239473] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:24:01.240469] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:24:01.241310] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:24:01.303684] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:24:01.304799] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:24:01.305849] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:31:38.937950] [INFO] BOUND runtime starting
+[2026-05-25T09:31:38.968270] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:31:38.999001] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:31:38.999731] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:31:39.000405] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:31:39.010762] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:31:39.019000] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:31:39.019736] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:36:00.172072] [INFO] BOUND runtime starting
+[2026-05-25T09:36:00.186426] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:36:00.199255] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:36:00.203391] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:36:00.206056] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:36:00.238931] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:36:00.256045] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:36:00.257063] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:36:00.259762] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}
+[2026-05-25T09:45:54.034074] [INFO] BOUND runtime starting
+[2026-05-25T09:45:54.045747] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:45:54.058077] [ACTION] Action executed: EMIT → thermal_alert | {"rule": "thermal_warning"}
+[2026-05-25T09:45:54.059204] [ACTION] Action executed: EXECUTE → emergency_cooling | {"rule": "thermal_critical"}
+[2026-05-25T09:45:54.060152] [ACTION] Action executed: EXECUTE → workload_isolation | {"rule": "thermal_critical"}

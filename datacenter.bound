@@ -1,0 +1,29 @@
+# ======================================================
+# BOUND Data Center Safety Policy
+# ======================================================
+
+POLICY datacenter_safety
+
+
+# ======================================================
+# METRICS
+# ======================================================
+
+METRIC cpu_temp     NUMBER
+METRIC fan_speed    PERCENT
+METRIC traffic_load PERCENT
+
+
+# ======================================================
+# RULES
+# ======================================================
+
+RULE thermal_warning
+WHEN cpu_temp > 70
+THEN EMIT thermal_alert
+
+
+RULE thermal_critical
+WHEN cpu_temp > 90
+THEN EXECUTE emergency_cooling
+THEN EXECUTE workload_isolation
