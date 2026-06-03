@@ -18,9 +18,14 @@ BOUND Aegis combines concepts from:
 
 ---
 
-# Google Solution Challenge Context
+## 🚀 JuaraVibeCoding 2026 Context & Tech Stack
 
-BOUND Aegis was developed as a sustainability-oriented infrastructure runtime concept aligned with:
+This project was built, tested, and deployed utilizing the Google technology ecosystem and the Vibe Coding approach:
+- **AI Orchestrator (Vibe Coding)**: Google AI Studio & Gemini API (Extensively leveraged through natural language instructions to design the Custom DSL architecture, construct Lark grammar rules, generate runtime evaluation logic, and build thermal simulation algorithms).
+- **Cloud Deployment**: Google Cloud Run (The entire Flask API backend and Live Dashboard are fully deployed serverless on Google Cloud Run for public, real-time access).
+- **Core Engine**: Python 3 (Flask, Lark Parser, Workload Simulation).
+- **Frontend Layer**: Real-time Telemetry Dashboard (HTML/CSS/JS).
+
 
 # SDG 7 — Affordable and Clean Energy
 
